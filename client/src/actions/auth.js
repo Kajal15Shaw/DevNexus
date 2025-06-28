@@ -9,6 +9,7 @@ import {
   LOGIN_FAIL,
   LOGOUT
 } from './types';
+
 // Load User
 export const loadUser = () => async dispatch => {
   try {
