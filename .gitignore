@@ -1,4 +1,3 @@
-node_modules/
-production.json/
-default.json/
-build/
+node_modules
+production.json
+default.json
