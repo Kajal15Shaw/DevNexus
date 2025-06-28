@@ -1,5 +1,4 @@
 node_modules/
 production.json/
-config/default.json/
-client/build/
-client/.eslintcache/
+default.json/
+build/
