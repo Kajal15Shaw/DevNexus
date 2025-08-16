@@ -3,7 +3,6 @@ const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const { check, validationResult } = require('express-validator');
 const normalize = require('normalize-url');
 
@@ -54,9 +53,7 @@ router.post(
       });
 
       const salt = await bcrypt.genSalt(10);
-
       user.password = await bcrypt.hash(password, salt);
-
       await user.save();
 
       const payload = {
@@ -67,7 +64,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        process.env.jwtSecret, // ✅ updated here
         { expiresIn: '5 days' },
         (err, token) => {
           if (err) throw err;
