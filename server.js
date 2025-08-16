@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors'); 
 const connectDB = require('./config/db');
 const path = require('path');
 const app = express();
@@ -7,21 +8,19 @@ const app = express();
 // Connect Database
 connectDB();
 
-// Init Middleware
-app.use(express.json());
-
-const cors = require('cors');
+// ✅ Handle preflight requests explicitly
+app.options('*', cors());
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
+  origin: true, // Reflects request origin
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+
+// Init Middleware
+app.use(express.json());
 
 
 // Define Routes
