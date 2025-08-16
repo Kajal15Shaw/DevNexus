@@ -274,7 +274,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(
-    mapStateToProps, 
-    { createProfile, getCurrentProfile }
-)(ProfileForm);
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  ProfileForm
+);

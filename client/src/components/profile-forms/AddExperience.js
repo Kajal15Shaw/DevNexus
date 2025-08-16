@@ -116,7 +116,4 @@ AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired
 };
 
-export default connect(
-  null, 
-  { addExperience }
-)(AddExperience);
+export default connect(null, { addExperience })(AddExperience);
