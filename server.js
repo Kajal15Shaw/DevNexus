@@ -10,6 +10,14 @@ connectDB();
 // Init Middleware
 app.use(express.json());
 
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'https://dev-nexus-2lov.vercel.app', // ✅ your frontend URL
+  credentials: true
+}));
+
+
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
