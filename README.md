@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DevConnector 2.0
 
 > Social network for developers
@@ -401,3 +402,6 @@ Brad Traversy
 ### License
 
 This project is licensed under the MIT License
+=======
+# DevNexus
+>>>>>>> f56263bc46dcee7e4e7be9819b65230b5b59b50d
