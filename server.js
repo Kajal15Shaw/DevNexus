@@ -1,22 +1,19 @@
-require('dotenv').config();
 const express = require('express');
-const cors = require('cors'); 
 const connectDB = require('./config/db');
 const path = require('path');
+const cors = require('cors');
+
 const app = express();
 
 // Connect Database
 connectDB();
 
-app.use(cors({
-  origin: '*',
-  optionsSuccessStatus: 200
-}));
-
-
-app.use(cors(corsOptions));
+// Init Middleware
+// Use express.json() to parse incoming JSON payloads
 app.use(express.json({ extended: false }));
 
+// Enable CORS for all origins in a generic way
+app.use(cors());
 
 // Define Routes
 app.use('/api/users', require('./routes/api/users'));
@@ -32,6 +29,9 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
+} else {
+  // Load environment variables only in a non-production environment
+  require('dotenv').config();
 }
 
 const PORT = process.env.PORT || 5000;
