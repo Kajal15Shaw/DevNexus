@@ -8,12 +8,19 @@ const app = express();
 // Connect Database
 connectDB();
 
-// Init Middleware
-// Use express.json() to parse incoming JSON payloads
-app.use(express.json({ extended: false }));
+// ✅ Handle preflight requests explicitly
+app.options('*', cors());
 
-// Enable CORS for all origins in a generic way
-app.use(cors());
+app.use(cors({
+  origin: true, // Reflects request origin
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+
+// Init Middleware
+app.use(express.json());
 
 app.use('/uploads', express.static('uploads'));
 
