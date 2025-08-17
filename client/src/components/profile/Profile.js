@@ -9,7 +9,6 @@ import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 import { getProfileById } from '../../actions/profile';
-import AvatarUploader from '../AvatarUploader';
 
 const Profile = ({ getProfileById, profile: { profile }, auth }) => {
   const { id } = useParams();
@@ -71,12 +70,6 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
             {profile.githubusername && (
               <ProfileGithub username={profile.githubusername} />
             )}
-
-            {/* Avatar Uploader Component Here */}
-            {auth.isAuthenticated && auth.loading === false && auth.user._id === profile.user._id && (
-                <AvatarUploader />
-            )}
-
           </div>
         </Fragment>
       )}
