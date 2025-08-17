@@ -71,6 +71,12 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
             {profile.githubusername && (
               <ProfileGithub username={profile.githubusername} />
             )}
+
+            {/* Avatar Uploader Component Here */}
+            {auth.isAuthenticated && auth.loading === false && auth.user._id === profile.user._id && (
+                <AvatarUploader />
+            )}
+
           </div>
         </Fragment>
       )}
